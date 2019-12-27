@@ -1,0 +1,53 @@
+<div class="logoutBG">
+    <button id="logoutButton" type="button" onclick="logout()">Logout</button>
+</div>
+<div class="divBorder">
+    <h1>Artist Directory</h1>
+
+    <input class="searchInput" id="searchBtnInput" type="text" placeholder="Search..">
+    <button id="addButton" type="button" onClick="togglePopUp()">Add</button>
+    <button id="searchButton" type="button"
+        onClick="searchArtist(document.getElementById('searchBtnInput').value)">Search</button>
+
+
+</div>
+<br />
+
+<div id='popUp'>
+    <form action="/addArtist" method="POST">
+        <input name='name' class="searchInput" id="artistName" type="text" placeholder="Artist Name">
+        <input name='about' class="searchInput" id="artistAbout" type="text" placeholder="About Artist">
+        <input name='url' class="searchInput" id="artistUrl" type="text" placeholder="Image url"><br />
+        <input id="addPopButton" type="submit" value="Add" />
+        <!-- <button id="addPopButton" type="button" -->
+        <!-- onclick="addArtist(document.getElementById('artistName').value,document.getElementById('artistAbout').value,document.getElementById('artistUrl').value)">Add</button> -->
+        <p></p>
+    </form>
+
+</div>
+<!-- <div class="parentTableDiv"> -->
+<div class="tableDiv">
+    <table id="mainTable">
+        {{#each artist}}
+        <tr id="{{this.id}}">
+            <td class="imgTd">
+                <img src="{{this.url}}" width="82" height="86" alt="Artist Picture" onerror="this.onerror=null;this.src='https://randomuser.me/api/portraits/med/women/1.jpg';"/>
+            </td>
+            <td class="infoTd">
+                <div class="tdDiv">
+                    <h3>{{this.name}}</h3>
+                    <p>{{this.about}}</p>
+                </div>
+            </td>
+            <td class="delTd">
+                <button type="button" class="deleteBtn" onclick="deleteArtist(this)">Delete</button>
+            </td>
+
+        </tr>
+        {{/each}}
+
+    </table>
+</div>
+<!-- </div> -->
+
+<script src="/js/client.js" type="text/javascript"></script>
